@@ -48,11 +48,6 @@ void loop() {
   sensor2Value = analogRead(A2);
   sensor3Value = analogRead(A3);
 
-  //adjust sensor values so that black is high ouput, and range is 0 to 100 (0 = white, 9 = black)
-//    sensor0Value = map(sensor0Value, 0, 1023, 100, 0);
-//    sensor1Value = map(sensor1Value, 0, 1023, 100, 0);
-//    sensor2Value = map(sensor2Value, 0, 1023, 100, 0);
-//    sensor3Value = map(sensor3Value, 0, 1023, 100, 0);
 
   sensor0Value = constrain(sensor0Value, 173, 1016);
   sensor1Value = constrain(sensor1Value, 142, 1016);
@@ -71,10 +66,7 @@ void loop() {
   Serial.println(sensor3Value);
 #endif
 
-  //refernce point centre point of vehicle
 
-
-  //formulaNumerator = ((sensor0Value * (-2.1)) + (sensor1Value * (-0.65)) + (sensor2Value * (0.8) ) + (sensor3Value * (2.3))); //working in cm
   formulaNumerator = ((sensor0Value * (-22)) + (sensor1Value * (-6.3)) + (sensor2Value * (9.3) ) + (sensor3Value * (24.6))); //working in mm
   formulaDenom = sensor0Value + sensor1Value + sensor2Value + sensor3Value;
   weightedAverage = formulaNumerator / formulaDenom;
